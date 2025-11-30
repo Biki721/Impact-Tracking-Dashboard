@@ -283,20 +283,20 @@ function RecordForm({ initialRecord, onClose, onSave, onSaveDraft }) {
 
   return (
     <div className="fixed inset-0 z-30 flex items-stretch justify-end bg-black/40">
-      <section className="relative h-full w-full max-w-xl bg-slate-950 border-l border-slate-800 flex flex-col">
-        <header className="flex items-center justify-between px-4 py-2 border-b border-slate-800 text-[11px]">
+      <section className="relative h-full w-full max-w-xl flex flex-col bg-white border-l border-slate-200 dark:bg-slate-950 dark:border-slate-800">
+        <header className="flex items-center justify-between px-4 py-2 border-b text-[11px] bg-white border-slate-200 dark:bg-slate-950 dark:border-slate-800">
           <div>
-            <h2 className="text-sm font-semibold text-slate-50">
+            <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-50">
               {initialRecord ? 'Edit impact record' : 'New impact record'}
             </h2>
-            <p className="text-[10px] text-slate-400">
+            <p className="text-[10px] text-slate-500 dark:text-slate-400">
               Matches your markdown template: problem, contribution, impact, evidence, feedback.
             </p>
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="inline-flex items-center justify-center rounded-md border border-slate-700 bg-slate-900 p-1.5 text-slate-300 hover:bg-slate-800"
+            className="inline-flex items-center justify-center rounded-md border p-1.5 text-slate-600 bg-white border-slate-300 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
           >
             <X className="h-3.5 w-3.5" />
           </button>
@@ -307,13 +307,13 @@ function RecordForm({ initialRecord, onClose, onSave, onSaveDraft }) {
           className="flex-1 overflow-y-auto px-4 py-3 space-y-4 text-[11px]"
         >
           <section className="space-y-2">
-            <h3 className="text-xs font-semibold text-slate-300">1️⃣ Basic information</h3>
+            <h3 className="text-xs font-semibold text-slate-700 dark:text-slate-300">1️⃣ Basic information</h3>
             <div className="space-y-2">
               <div>
-                <label className="block text-[11px] text-slate-300 mb-0.5">Project / Task name *</label>
+                <label className="block text-[11px] text-slate-700 dark:text-slate-300 mb-0.5">Project / Task name *</label>
                 <input
                   {...register('projectName')}
-                  className="w-full rounded-md border border-slate-700 bg-slate-950 px-2 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-primary-500"
+                  className="w-full rounded-md border px-2 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-primary-500 bg-white border-slate-300 text-slate-900 dark:bg-slate-950 dark:border-slate-700 dark:text-slate-50"
                 />
                 {errors.projectName && (
                   <p className="mt-0.5 text-[10px] text-red-400">{errors.projectName.message}</p>
@@ -322,10 +322,10 @@ function RecordForm({ initialRecord, onClose, onSave, onSaveDraft }) {
 
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <label className="block text-[11px] text-slate-300 mb-0.5">Category *</label>
+                  <label className="block text-[11px] text-slate-700 dark:text-slate-300 mb-0.5">Category *</label>
                   <select
                     {...register('category')}
-                    className="w-full rounded-md border border-slate-700 bg-slate-950 px-2 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-primary-500"
+                    className="w-full rounded-md border px-2 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-primary-500 bg-white border-slate-300 text-slate-900 dark:bg-slate-950 dark:border-slate-700 dark:text-slate-50"
                   >
                     <option value="">Select</option>
                     {CATEGORIES.map((c) => (
@@ -339,10 +339,10 @@ function RecordForm({ initialRecord, onClose, onSave, onSaveDraft }) {
                   )}
                 </div>
                 <div>
-                  <label className="block text-[11px] text-slate-300 mb-0.5">Status *</label>
+                  <label className="block text-[11px] text-slate-700 dark:text-slate-300 mb-0.5">Status *</label>
                   <select
                     {...register('status')}
-                    className="w-full rounded-md border border-slate-700 bg-slate-950 px-2 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-primary-500"
+                    className="w-full rounded-md border px-2 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-primary-500 bg-white border-slate-300 text-slate-900 dark:bg-slate-950 dark:border-slate-700 dark:text-slate-50"
                   >
                     <option value="">Select</option>
                     {STATUS_OPTIONS.map((s) => (
@@ -358,29 +358,29 @@ function RecordForm({ initialRecord, onClose, onSave, onSaveDraft }) {
               </div>
 
               <div>
-                <label className="block text-[11px] text-slate-300 mb-0.5">Team / Stakeholders</label>
+                <label className="block text-[11px] text-slate-700 dark:text-slate-300 mb-0.5">Team / Stakeholders</label>
                 <input
                   {...register('team')}
                   placeholder="Comma-separated e.g. Ops, Platform, AI"
-                  className="w-full rounded-md border border-slate-700 bg-slate-950 px-2 py-1.5 text-xs placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
+                  className="w-full rounded-md border px-2 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-primary-500 bg-white border-slate-300 text-slate-900 placeholder:text-slate-400 dark:bg-slate-950 dark:border-slate-700 dark:text-slate-50 dark:placeholder:text-slate-500"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <label className="block text-[11px] text-slate-300 mb-0.5">Start date</label>
+                  <label className="block text-[11px] text-slate-700 dark:text-slate-300 mb-0.5">Start date</label>
                   <input
                     type="date"
                     {...register('startDate')}
-                    className="w-full rounded-md border border-slate-700 bg-slate-950 px-2 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-primary-500"
+                    className="w-full rounded-md border px-2 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-primary-500 bg-white border-slate-300 text-slate-900 dark:bg-slate-950 dark:border-slate-700 dark:text-slate-50"
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] text-slate-300 mb-0.5">End date</label>
+                  <label className="block text-[11px] text-slate-700 dark:text-slate-300 mb-0.5">End date</label>
                   <input
                     type="date"
                     {...register('endDate')}
-                    className="w-full rounded-md border border-slate-700 bg-slate-950 px-2 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-primary-500"
+                    className="w-full rounded-md border px-2 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-primary-500 bg-white border-slate-300 text-slate-900 dark:bg-slate-950 dark:border-slate-700 dark:text-slate-50"
                   />
                 </div>
               </div>
@@ -388,48 +388,48 @@ function RecordForm({ initialRecord, onClose, onSave, onSaveDraft }) {
           </section>
 
           <section className="space-y-2">
-            <h3 className="text-xs font-semibold text-slate-300">2️⃣ Problem statement</h3>
+            <h3 className="text-xs font-semibold text-slate-700 dark:text-slate-300">2️⃣ Problem statement</h3>
             <div>
-              <label className="block text-[11px] text-slate-300 mb-0.5">What issue existed before? *</label>
+              <label className="block text-[11px] text-slate-700 dark:text-slate-300 mb-0.5">What issue existed before? *</label>
               <textarea
                 {...register('problemWhat')}
                 rows={3}
-                className="w-full rounded-md border border-slate-700 bg-slate-950 px-2 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-primary-500"
+                className="w-full rounded-md border px-2 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-primary-500 bg-white border-slate-300 text-slate-900 dark:bg-slate-950 dark:border-slate-700 dark:text-slate-50"
               />
               {errors.problemWhat && (
                 <p className="mt-0.5 text-[10px] text-red-400">{errors.problemWhat.message}</p>
               )}
             </div>
             <div>
-              <label className="block text-[11px] text-slate-300 mb-0.5">Why was it important to solve?</label>
+              <label className="block text-[11px] text-slate-700 dark:text-slate-300 mb-0.5">Why was it important to solve?</label>
               <textarea
                 {...register('problemWhy')}
                 rows={2}
-                className="w-full rounded-md border border-slate-700 bg-slate-950 px-2 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-primary-500"
+                className="w-full rounded-md border px-2 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-primary-500 bg-white border-slate-300 text-slate-900 dark:bg-slate-950 dark:border-slate-700 dark:text-slate-50"
               />
             </div>
           </section>
 
           <section className="space-y-2">
-            <h3 className="text-xs font-semibold text-slate-300">3️⃣ Your contribution</h3>
+            <h3 className="text-xs font-semibold text-slate-700 dark:text-slate-300">3️⃣ Your contribution</h3>
             <div>
-              <label className="block text-[11px] text-slate-300 mb-0.5">What exactly did you do?</label>
+              <label className="block text-[11px] text-slate-700 dark:text-slate-300 mb-0.5">What exactly did you do?</label>
               <textarea
                 {...register('contributionSummary')}
                 rows={2}
-                className="w-full rounded-md border border-slate-700 bg-slate-950 px-2 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-primary-500"
+                className="w-full rounded-md border px-2 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-primary-500 bg-white border-slate-300 text-slate-900 dark:bg-slate-950 dark:border-slate-700 dark:text-slate-50"
               />
             </div>
             <div>
-              <p className="text-[11px] text-slate-300 mb-1">Responsibilities (tick all that apply)</p>
+              <p className="text-[11px] text-slate-700 dark:text-slate-300 mb-1">Responsibilities (tick all that apply)</p>
               <div className="grid grid-cols-2 gap-1.5">
                 {RESPONSIBILITIES.map((resp) => (
-                  <label key={resp} className="inline-flex items-center gap-1 text-[10px] text-slate-200">
+                  <label key={resp} className="inline-flex items-center gap-1 text-[10px] text-slate-700 dark:text-slate-200">
                     <input
                       type="checkbox"
                       value={resp}
                       {...register('responsibilities')}
-                      className="h-3 w-3 rounded border-slate-600 bg-slate-950 text-primary-500 focus:ring-primary-500"
+                      className="h-3 w-3 rounded border-slate-300 bg-white text-primary-600 focus:ring-primary-500 dark:border-slate-600 dark:bg-slate-950 dark:text-primary-500"
                     />
                     <span>{resp}</span>
                   </label>
@@ -439,51 +439,51 @@ function RecordForm({ initialRecord, onClose, onSave, onSaveDraft }) {
           </section>
 
           <section className="space-y-2">
-            <h3 className="text-xs font-semibold text-slate-300">4️⃣ Tech stack</h3>
+            <h3 className="text-xs font-semibold text-slate-700 dark:text-slate-300">4️⃣ Tech stack</h3>
             <div className="space-y-1.5">
               <div>
-                <label className="block text-[11px] text-slate-300 mb-0.5">Languages</label>
+                <label className="block text-[11px] text-slate-700 dark:text-slate-300 mb-0.5">Languages</label>
                 <input
                   {...register('languages')}
                   placeholder="Python, TypeScript, SQL"
-                  className="w-full rounded-md border border-slate-700 bg-slate-950 px-2 py-1.5 text-xs placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
+                  className="w-full rounded-md border px-2 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-primary-500 bg-white border-slate-300 text-slate-900 placeholder:text-slate-400 dark:bg-slate-950 dark:border-slate-700 dark:text-slate-50 dark:placeholder:text-slate-500"
                 />
               </div>
               <div>
-                <label className="block text-[11px] text-slate-300 mb-0.5">Frameworks & tools</label>
+                <label className="block text-[11px] text-slate-700 dark:text-slate-300 mb-0.5">Frameworks & tools</label>
                 <input
                   {...register('frameworks')}
                   placeholder="Playwright, React, FastAPI"
-                  className="w-full rounded-md border border-slate-700 bg-slate-950 px-2 py-1.5 text-xs placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
+                  className="w-full rounded-md border px-2 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-primary-500 bg-white border-slate-300 text-slate-900 placeholder:text-slate-400 dark:bg-slate-950 dark:border-slate-700 dark:text-slate-50 dark:placeholder:text-slate-500"
                 />
               </div>
               <div>
-                <label className="block text-[11px] text-slate-300 mb-0.5">Infrastructure</label>
+                <label className="block text-[11px] text-slate-700 dark:text-slate-300 mb-0.5">Infrastructure</label>
                 <input
                   {...register('infrastructure')}
                   placeholder="Supabase, GCP, Docker, GitHub Actions"
-                  className="w-full rounded-md border border-slate-700 bg-slate-950 px-2 py-1.5 text-xs placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
+                  className="w-full rounded-md border px-2 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-primary-500 bg-white border-slate-300 text-slate-900 placeholder:text-slate-400 dark:bg-slate-950 dark:border-slate-700 dark:text-slate-50 dark:placeholder:text-slate-500"
                 />
               </div>
             </div>
           </section>
 
           <section className="space-y-2">
-            <h3 className="text-xs font-semibold text-slate-300">5️⃣ Quantifiable impact</h3>
-            <div className="rounded-md border border-slate-800 bg-slate-950/60">
-              <div className="flex items-center justify-between px-2 py-1.5 border-b border-slate-800">
-                <p className="text-[10px] text-slate-300">Metric table</p>
+            <h3 className="text-xs font-semibold text-slate-700 dark:text-slate-300">5️⃣ Quantifiable impact</h3>
+            <div className="rounded-md border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950/60">
+              <div className="flex items-center justify-between px-2 py-1.5 border-b border-slate-200 dark:border-slate-800">
+                <p className="text-[10px] text-slate-600 dark:text-slate-300">Metric table</p>
                 <button
                   type="button"
                   onClick={handleAddImpactRow}
-                  className="inline-flex items-center gap-1 rounded-md border border-slate-700 bg-slate-900 px-1.5 py-0.5 text-[10px] text-slate-200 hover:bg-slate-800"
+                  className="inline-flex items-center gap-1 rounded-md border px-1.5 py-0.5 text-[10px] bg-slate-100 text-slate-800 border-slate-300 hover:bg-slate-200 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
                 >
                   <Plus className="h-3 w-3" /> Row
                 </button>
               </div>
               <div className="max-h-40 overflow-y-auto">
                 <table className="min-w-full text-[10px]">
-                  <thead className="bg-slate-900/80 text-slate-300">
+                  <thead className="bg-slate-50 text-slate-600 dark:bg-slate-900/80 dark:text-slate-300">
                     <tr>
                       <th className="px-2 py-1.5 text-left font-medium">Metric</th>
                       <th className="px-2 py-1.5 text-left font-medium">Before</th>
@@ -492,35 +492,35 @@ function RecordForm({ initialRecord, onClose, onSave, onSaveDraft }) {
                       <th className="px-1 py-1.5" />
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-800">
+                  <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
                     {impactRows.map((row, index) => (
                       <tr key={index}>
                         <td className="px-2 py-1.5">
                           <input
                             value={row.metric}
                             onChange={(e) => handleImpactChange(index, 'metric', e.target.value)}
-                            className="w-full rounded-md border border-slate-700 bg-slate-950 px-1.5 py-1 text-[10px] focus:outline-none focus:ring-1 focus:ring-primary-500"
+                            className="w-full rounded-md border px-1.5 py-1 text-[10px] focus:outline-none focus:ring-1 focus:ring-primary-500 bg-white border-slate-300 text-slate-900 dark:bg-slate-950 dark:border-slate-700 dark:text-slate-50"
                           />
                         </td>
                         <td className="px-2 py-1.5">
                           <input
                             value={row.before}
                             onChange={(e) => handleImpactChange(index, 'before', e.target.value)}
-                            className="w-full rounded-md border border-slate-700 bg-slate-950 px-1.5 py-1 text-[10px] focus:outline-none focus:ring-1 focus:ring-primary-500"
+                            className="w-full rounded-md border px-1.5 py-1 text-[10px] focus:outline-none focus:ring-1 focus:ring-primary-500 bg-white border-slate-300 text-slate-900 dark:bg-slate-950 dark:border-slate-700 dark:text-slate-50"
                           />
                         </td>
                         <td className="px-2 py-1.5">
                           <input
                             value={row.after}
                             onChange={(e) => handleImpactChange(index, 'after', e.target.value)}
-                            className="w-full rounded-md border border-slate-700 bg-slate-950 px-1.5 py-1 text-[10px] focus:outline-none focus:ring-1 focus:ring-primary-500"
+                            className="w-full rounded-md border px-1.5 py-1 text-[10px] focus:outline-none focus:ring-1 focus:ring-primary-500 bg-white border-slate-300 text-slate-900 dark:bg-slate-950 dark:border-slate-700 dark:text-slate-50"
                           />
                         </td>
                         <td className="px-2 py-1.5">
                           <input
                             value={row.improvement}
                             onChange={(e) => handleImpactChange(index, 'improvement', e.target.value)}
-                            className="w-full rounded-md border border-slate-700 bg-slate-950 px-1.5 py-1 text-[10px] focus:outline-none focus:ring-1 focus:ring-primary-500"
+                            className="w-full rounded-md border px-1.5 py-1 text-[10px] focus:outline-none focus:ring-1 focus:ring-primary-500 bg-white border-slate-300 text-slate-900 dark:bg-slate-950 dark:border-slate-700 dark:text-slate-50"
                           />
                         </td>
                         <td className="px-1 py-1.5">
@@ -541,56 +541,56 @@ function RecordForm({ initialRecord, onClose, onSave, onSaveDraft }) {
 
             <div className="grid grid-cols-2 gap-2">
               <div>
-                <label className="block text-[11px] text-slate-300 mb-0.5">Hours saved per month</label>
+                <label className="block text-[11px] text-slate-700 dark:text-slate-300 mb-0.5">Hours saved per month</label>
                 <input
                   type="number"
                   min={0}
                   {...register('hoursSavedPerMonth')}
-                  className="w-full rounded-md border border-slate-700 bg-slate-950 px-2 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-primary-500"
+                  className="w-full rounded-md border px-2 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-primary-500 bg-white border-slate-300 text-slate-900 dark:bg-slate-950 dark:border-slate-700 dark:text-slate-50"
                 />
               </div>
               <div>
-                <label className="block text-[11px] text-slate-300 mb-0.5">Users impacted</label>
+                <label className="block text-[11px] text-slate-700 dark:text-slate-300 mb-0.5">Users impacted</label>
                 <input
                   type="number"
                   min={0}
                   {...register('usersImpacted')}
-                  className="w-full rounded-md border border-slate-700 bg-slate-950 px-2 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-primary-500"
+                  className="w-full rounded-md border px-2 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-primary-500 bg-white border-slate-300 text-slate-900 dark:bg-slate-950 dark:border-slate-700 dark:text-slate-50"
                 />
               </div>
               <div>
-                <label className="block text-[11px] text-slate-300 mb-0.5">Bugs fixed</label>
+                <label className="block text-[11px] text-slate-700 dark:text-slate-300 mb-0.5">Bugs fixed</label>
                 <input
                   type="number"
                   min={0}
                   {...register('bugsFixed')}
-                  className="w-full rounded-md border border-slate-700 bg-slate-950 px-2 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-primary-500"
+                  className="w-full rounded-md border px-2 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-primary-500 bg-white border-slate-300 text-slate-900 dark:bg-slate-950 dark:border-slate-700 dark:text-slate-50"
                 />
               </div>
               <div>
-                <label className="block text-[11px] text-slate-300 mb-0.5">Manual steps eliminated</label>
+                <label className="block text-[11px] text-slate-700 dark:text-slate-300 mb-0.5">Manual steps eliminated</label>
                 <input
                   type="number"
                   min={0}
                   {...register('manualStepsEliminated')}
-                  className="w-full rounded-md border border-slate-700 bg-slate-950 px-2 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-primary-500"
+                  className="w-full rounded-md border px-2 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-primary-500 bg-white border-slate-300 text-slate-900 dark:bg-slate-950 dark:border-slate-700 dark:text-slate-50"
                 />
               </div>
             </div>
           </section>
 
           <section className="space-y-2">
-            <h3 className="text-xs font-semibold text-slate-300">6️⃣ AI / automation value add (optional)</h3>
+            <h3 className="text-xs font-semibold text-slate-700 dark:text-slate-300">6️⃣ AI / automation value add (optional)</h3>
             <div>
-              <p className="text-[11px] text-slate-300 mb-1">AI used for</p>
+              <p className="text-[11px] text-slate-700 dark:text-slate-300 mb-1">AI used for</p>
               <div className="grid grid-cols-2 gap-1.5">
                 {AI_FEATURES.map((f) => (
-                  <label key={f} className="inline-flex items-center gap-1 text-[10px] text-slate-200">
+                  <label key={f} className="inline-flex items-center gap-1 text-[10px] text-slate-700 dark:text-slate-200">
                     <input
                       type="checkbox"
                       value={f}
                       {...register('aiFeatures')}
-                      className="h-3 w-3 rounded border-slate-600 bg-slate-950 text-primary-500 focus:ring-primary-500"
+                      className="h-3 w-3 rounded border-slate-300 bg-white text-primary-600 focus:ring-primary-500 dark:border-slate-600 dark:bg-slate-950 dark:text-primary-500"
                     />
                     <span>{f}</span>
                   </label>
@@ -598,41 +598,41 @@ function RecordForm({ initialRecord, onClose, onSave, onSaveDraft }) {
               </div>
             </div>
             <div>
-              <label className="block text-[11px] text-slate-300 mb-0.5">Outcome</label>
+              <label className="block text-[11px] text-slate-700 dark:text-slate-300 mb-0.5">Outcome</label>
               <textarea
                 {...register('aiOutcome')}
                 rows={2}
-                className="w-full rounded-md border border-slate-700 bg-slate-950 px-2 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-primary-500"
+                className="w-full rounded-md border px-2 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-primary-500 bg-white border-slate-300 text-slate-900 dark:bg-slate-950 dark:border-slate-700 dark:text-slate-50"
               />
             </div>
           </section>
 
           <section className="space-y-2">
-            <h3 className="text-xs font-semibold text-slate-300">7️⃣ Before vs after</h3>
+            <h3 className="text-xs font-semibold text-slate-700 dark:text-slate-300">7️⃣ Before vs after</h3>
             <div className="grid grid-cols-1 gap-2">
               <div>
-                <label className="block text-[11px] text-slate-300 mb-0.5">Before</label>
+                <label className="block text-[11px] text-slate-700 dark:text-slate-300 mb-0.5">Before</label>
                 <textarea
                   {...register('beforeText')}
                   rows={2}
-                  className="w-full rounded-md border border-slate-700 bg-slate-950 px-2 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-primary-500"
+                  className="w-full rounded-md border px-2 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-primary-500 bg-white border-slate-300 text-slate-900 dark:bg-slate-950 dark:border-slate-700 dark:text-slate-50"
                 />
               </div>
               <div>
-                <label className="block text-[11px] text-slate-300 mb-0.5">After</label>
+                <label className="block text-[11px] text-slate-700 dark:text-slate-300 mb-0.5">After</label>
                 <textarea
                   {...register('afterText')}
                   rows={2}
-                  className="w-full rounded-md border border-slate-700 bg-slate-950 px-2 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-primary-500"
+                  className="w-full rounded-md border px-2 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-primary-500 bg-white border-slate-300 text-slate-900 dark:bg-slate-950 dark:border-slate-700 dark:text-slate-50"
                 />
               </div>
             </div>
           </section>
 
           <section className="space-y-2">
-            <h3 className="text-xs font-semibold text-slate-300">8️⃣ Evidence / proof</h3>
+            <h3 className="text-xs font-semibold text-slate-700 dark:text-slate-300">8️⃣ Evidence / proof</h3>
             <div className="flex flex-wrap items-center gap-2">
-              <label className="inline-flex items-center gap-1 rounded-md border border-slate-700 bg-slate-900 px-2 py-1 text-[10px] text-slate-200 hover:bg-slate-800 cursor-pointer">
+              <label className="inline-flex items-center gap-1 rounded-md border px-2 py-1 text-[10px] bg-slate-100 text-slate-800 border-slate-300 hover:bg-slate-200 cursor-pointer dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800">
                 <Upload className="h-3 w-3" />
                 <span>Upload screenshots</span>
                 <input
@@ -648,18 +648,18 @@ function RecordForm({ initialRecord, onClose, onSave, onSaveDraft }) {
                   value={linkLabel}
                   onChange={(e) => setLinkLabel(e.target.value)}
                   placeholder="Label"
-                  className="w-24 rounded-md border border-slate-700 bg-slate-950 px-2 py-1 text-[10px] placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
+                  className="w-24 rounded-md border px-2 py-1 text-[10px] focus:outline-none focus:ring-1 focus:ring-primary-500 bg-white border-slate-300 text-slate-900 placeholder:text-slate-400 dark:bg-slate-950 dark:border-slate-700 dark:text-slate-50 dark:placeholder:text-slate-500"
                 />
                 <input
                   value={linkUrl}
                   onChange={(e) => setLinkUrl(e.target.value)}
                   placeholder="https://link"
-                  className="w-36 rounded-md border border-slate-700 bg-slate-950 px-2 py-1 text-[10px] placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
+                  className="w-36 rounded-md border px-2 py-1 text-[10px] focus:outline-none focus:ring-1 focus:ring-primary-500 bg-white border-slate-300 text-slate-900 placeholder:text-slate-400 dark:bg-slate-950 dark:border-slate-700 dark:text-slate-50 dark:placeholder:text-slate-500"
                 />
                 <button
                   type="button"
                   onClick={handleAddLinkEvidence}
-                  className="inline-flex items-center gap-1 rounded-md border border-slate-700 bg-slate-900 px-2 py-1 text-[10px] text-slate-200 hover:bg-slate-800"
+                  className="inline-flex items-center gap-1 rounded-md border px-2 py-1 text-[10px] bg-slate-100 text-slate-800 border-slate-300 hover:bg-slate-200 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
                 >
                   <LinkIcon className="h-3 w-3" /> Add link
                 </button>
@@ -672,7 +672,7 @@ function RecordForm({ initialRecord, onClose, onSave, onSaveDraft }) {
                   return (
                     <div
                       key={index}
-                      className="relative w-20 h-16 rounded-md border border-slate-700 bg-slate-900 overflow-hidden flex items-center justify-center"
+                      className="relative w-20 h-16 rounded-md border border-slate-200 bg-slate-100 overflow-hidden flex items-center justify-center dark:border-slate-700 dark:bg-slate-900"
                     >
                       <img
                         src={item.url}
@@ -694,7 +694,7 @@ function RecordForm({ initialRecord, onClose, onSave, onSaveDraft }) {
                   return (
                     <div
                       key={index}
-                      className="inline-flex items-center gap-1 rounded-md border border-slate-700 bg-slate-900 px-2 py-1 text-[10px] text-slate-200"
+                      className="inline-flex items-center gap-1 rounded-md border px-2 py-1 text-[10px] bg-slate-100 text-slate-800 border-slate-200 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
                     >
                       <span className="text-[10px] font-mono">FILE</span>
                       <span className="max-w-[100px] truncate">{item.label}</span>
@@ -720,7 +720,7 @@ function RecordForm({ initialRecord, onClose, onSave, onSaveDraft }) {
                 return (
                   <div
                     key={index}
-                    className="inline-flex items-center gap-1 rounded-md border border-slate-700 bg-slate-900 px-2 py-1 text-[10px] text-slate-200"
+                    className="inline-flex items-center gap-1 rounded-md border px-2 py-1 text-[10px] bg-slate-100 text-slate-800 border-slate-200 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
                   >
                     <LinkIcon className="h-3 w-3" />
                     <span className="max-w-[120px] truncate">{item.label || item.url}</span>
@@ -738,20 +738,20 @@ function RecordForm({ initialRecord, onClose, onSave, onSaveDraft }) {
           </section>
 
           <section className="space-y-2">
-            <h3 className="text-xs font-semibold text-slate-300">9️⃣ Feedback received</h3>
+            <h3 className="text-xs font-semibold text-slate-700 dark:text-slate-300">9️⃣ Feedback received</h3>
             <div className="space-y-1.5">
               <div className="flex items-center gap-1.5">
                 <input
                   value={fbFrom}
                   onChange={(e) => setFbFrom(e.target.value)}
                   placeholder="From (manager, lead, ops...)"
-                  className="flex-1 rounded-md border border-slate-700 bg-slate-950 px-2 py-1.5 text-[10px] placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
+                  className="flex-1 rounded-md border px-2 py-1.5 text-[10px] focus:outline-none focus:ring-1 focus:ring-primary-500 bg-white border-slate-300 text-slate-900 placeholder:text-slate-400 dark:bg-slate-950 dark:border-slate-700 dark:text-slate-50 dark:placeholder:text-slate-500"
                 />
                 <input
                   type="date"
                   value={fbDate}
                   onChange={(e) => setFbDate(e.target.value)}
-                  className="w-28 rounded-md border border-slate-700 bg-slate-950 px-2 py-1.5 text-[10px] focus:outline-none focus:ring-1 focus:ring-primary-500"
+                  className="w-28 rounded-md border px-2 py-1.5 text-[10px] focus:outline-none focus:ring-1 focus:ring-primary-500 bg-white border-slate-300 text-slate-900 dark:bg-slate-950 dark:border-slate-700 dark:text-slate-50"
                 />
               </div>
               <div className="flex items-start gap-1.5">
@@ -760,12 +760,12 @@ function RecordForm({ initialRecord, onClose, onSave, onSaveDraft }) {
                   onChange={(e) => setFbMessage(e.target.value)}
                   placeholder="Paste appreciation / feedback message..."
                   rows={2}
-                  className="flex-1 rounded-md border border-slate-700 bg-slate-950 px-2 py-1.5 text-[10px] placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
+                  className="flex-1 rounded-md border px-2 py-1.5 text-[10px] focus:outline-none focus:ring-1 focus:ring-primary-500 bg-white border-slate-300 text-slate-900 placeholder:text-slate-400 dark:bg-slate-950 dark:border-slate-700 dark:text-slate-50 dark:placeholder:text-slate-500"
                 />
                 <button
                   type="button"
                   onClick={handleAddFeedback}
-                  className="mt-0.5 inline-flex items-center gap-1 rounded-md border border-slate-700 bg-slate-900 px-2 py-1 text-[10px] text-slate-200 hover:bg-slate-800"
+                  className="mt-0.5 inline-flex items-center gap-1 rounded-md border px-2 py-1 text-[10px] bg-slate-100 text-slate-800 border-slate-300 hover:bg-slate-200 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
                 >
                   Add
                 </button>
@@ -775,19 +775,19 @@ function RecordForm({ initialRecord, onClose, onSave, onSaveDraft }) {
               {feedbackItems.map((fb, index) => (
                 <div
                   key={index}
-                  className="rounded-md border border-slate-800 bg-slate-950/70 px-2 py-1.5 flex items-start gap-1.5"
+                  className="rounded-md border border-slate-200 bg-white px-2 py-1.5 flex items-start gap-1.5 dark:border-slate-800 dark:bg-slate-950/70"
                 >
                   <div className="flex-1">
-                    <div className="text-[10px] text-slate-400 mb-0.5">
-                      {fb.from && <span className="font-medium text-slate-300">{fb.from}</span>}
+                    <div className="text-[10px] text-slate-500 dark:text-slate-400 mb-0.5">
+                      {fb.from && <span className="font-medium text-slate-700 dark:text-slate-300">{fb.from}</span>}
                       {fb.date && <span className="ml-1">• {fb.date}</span>}
                     </div>
-                    <div className="text-slate-200 whitespace-pre-wrap">{fb.message}</div>
+                    <div className="text-slate-800 dark:text-slate-200 whitespace-pre-wrap">{fb.message}</div>
                   </div>
                   <button
                     type="button"
                     onClick={() => handleRemoveFeedback(index)}
-                    className="ml-1 text-slate-400 hover:text-slate-200 text-[10px]"
+                    className="ml-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-[10px]"
                   >
                     ✕
                   </button>
@@ -798,11 +798,11 @@ function RecordForm({ initialRecord, onClose, onSave, onSaveDraft }) {
 
           <section className="space-y-2 mb-20">
             <div className="flex items-center justify-between">
-              <h3 className="text-xs font-semibold text-slate-300">🔟 Final summary bullet</h3>
+              <h3 className="text-xs font-semibold text-slate-700 dark:text-slate-300">🔟 Final summary bullet</h3>
               <button
                 type="button"
                 onClick={handleGenerateBullet}
-                className="inline-flex items-center gap-1 rounded-md border border-slate-700 bg-slate-900 px-2 py-1 text-[10px] text-slate-200 hover:bg-slate-800"
+                className="inline-flex items-center gap-1 rounded-md border px-2 py-1 text-[10px] bg-slate-100 text-slate-800 border-slate-300 hover:bg-slate-200 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
               >
                 <Sparkles className="h-3 w-3" /> Auto-suggest
               </button>
@@ -812,18 +812,20 @@ function RecordForm({ initialRecord, onClose, onSave, onSaveDraft }) {
               name="finalBullet"
               rows={2}
               placeholder="Automated {project} using {tech}, saving ~{H} hours/month, eliminating {S} steps and helping {U} users."
-              className="w-full rounded-md border border-slate-700 bg-slate-950 px-2 py-1.5 text-xs placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
+              className="w-full rounded-md border px-2 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-primary-500 bg-white border-slate-300 text-slate-900 placeholder:text-slate-400 dark:bg-slate-950 dark:border-slate-700 dark:text-slate-50 dark:placeholder:text-slate-500"
             />
           </section>
         </form>
 
-        <footer className="absolute bottom-0 inset-x-0 border-t border-slate-800 bg-slate-950 px-4 py-2 flex items-center justify-between text-[11px]">
-          <div className="text-[10px] text-slate-500">Autosaves draft every 30s if you fill project + problem.</div>
+        <footer className="absolute bottom-0 inset-x-0 border-t px-4 py-2 flex items-center justify-between text-[11px] bg-white border-slate-200 dark:bg-slate-950 dark:border-slate-800">
+          <div className="text-[10px] text-slate-500">
+            Tip: Use "Save draft" to store work in progress. Nothing is auto-saved.
+          </div>
           <div className="flex items-center gap-1.5">
             <button
               type="button"
               onClick={handleSaveDraftClick}
-              className="inline-flex items-center gap-1 rounded-md border border-slate-700 bg-slate-900 px-2.5 py-1.5 text-[10px] text-slate-200 hover:bg-slate-800"
+              className="inline-flex items-center gap-1 rounded-md border px-2.5 py-1.5 text-[10px] bg-slate-100 text-slate-800 border-slate-300 hover:bg-slate-200 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
             >
               <SaveAll className="h-3 w-3" /> Save draft
             </button>

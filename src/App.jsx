@@ -245,7 +245,7 @@ function App() {
   const handleExportPDF = () => exportRecordsToPDF(filteredRecords)
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-50 flex flex-col">
+    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-50">
       <TopBar
         search={search}
         onSearchChange={setSearch}

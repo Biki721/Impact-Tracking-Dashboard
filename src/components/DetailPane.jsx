@@ -269,6 +269,7 @@ function DetailPane({ record, onEdit, onCopyBullet, onExportPDF }) {
           )}
         </section>
       </div>
+      </div>
     </section>
   )
 }

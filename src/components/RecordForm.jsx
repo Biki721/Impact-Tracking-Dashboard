@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { RESPONSIBILITIES, AI_FEATURES, DEFAULT_IMPACT_ROWS, CATEGORIES, STATUS_OPTIONS } from '../constants.js'
-import { X, Save, SaveAll, Upload, Link as LinkIcon, Plus, Trash2, Sparkles } from 'lucide-react'
+import { X, Save, SaveAll, Upload, Link as LinkIcon, Plus, Trash2, Sparkles, XCircle } from 'lucide-react'
 
 const formSchema = z.object({
   projectName: z.string().min(1, 'Project name is required'),
@@ -162,6 +162,7 @@ function buildRecordFromValues(values, impactRows, evidenceItems, feedbackItems,
 }
 
 function RecordForm({ initialRecord, onClose, onSave, onSaveDraft }) {
+  const [previewImage, setPreviewImage] = useState(null);
   const [impactRows, setImpactRows] = useState(
     initialRecord?.impact?.length ? initialRecord.impact : DEFAULT_IMPACT_ROWS,
   )
@@ -672,7 +673,8 @@ function RecordForm({ initialRecord, onClose, onSave, onSaveDraft }) {
                   return (
                     <div
                       key={index}
-                      className="relative w-20 h-16 rounded-md border border-slate-200 bg-slate-100 overflow-hidden flex items-center justify-center dark:border-slate-700 dark:bg-slate-900"
+                      className="relative w-20 h-16 rounded-md border border-slate-200 bg-slate-100 overflow-hidden flex items-center justify-center dark:border-slate-700 dark:bg-slate-900 cursor-pointer hover:opacity-90 transition-opacity"
+                      onClick={() => setPreviewImage(item.url)}
                     >
                       <img
                         src={item.url}
@@ -681,8 +683,11 @@ function RecordForm({ initialRecord, onClose, onSave, onSaveDraft }) {
                       />
                       <button
                         type="button"
-                        onClick={() => handleRemoveEvidence(index)}
-                        className="absolute top-0.5 right-0.5 rounded-full bg-black/70 p-0.5 text-[9px]"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleRemoveEvidence(index);
+                        }}
+                        className="absolute top-0.5 right-0.5 rounded-full bg-black/70 p-0.5 text-[9px] text-white hover:bg-red-500 z-10"
                       >
                         ✕
                       </button>
@@ -691,25 +696,27 @@ function RecordForm({ initialRecord, onClose, onSave, onSaveDraft }) {
                 }
 
                 if (item.type === 'upload') {
+                  const isPDF = item.mimeType === 'application/pdf' || item.label?.toLowerCase().endsWith('.pdf');
                   return (
                     <div
                       key={index}
                       className="inline-flex items-center gap-1 rounded-md border px-2 py-1 text-[10px] bg-slate-100 text-slate-800 border-slate-200 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
                     >
-                      <span className="text-[10px] font-mono">FILE</span>
+                      <span className="text-[10px] font-mono">{isPDF ? 'PDF' : 'FILE'}</span>
                       <span className="max-w-[100px] truncate">{item.label}</span>
                       <a
                         href={item.url}
                         target="_blank"
                         rel="noreferrer"
-                        className="ml-1 text-primary-300 hover:text-primary-200"
+                        download={isPDF ? item.label : undefined}
+                        className="ml-1 text-primary-600 hover:text-primary-800 dark:text-primary-300 dark:hover:text-primary-200"
                       >
-                        Open
+                        {isPDF ? 'Download' : 'Open'}
                       </a>
                       <button
                         type="button"
                         onClick={() => handleRemoveEvidence(index)}
-                        className="ml-1 text-slate-400 hover:text-slate-200"
+                        className="ml-1 text-slate-400 hover:text-red-500"
                       >
                         ✕
                       </button>
@@ -816,6 +823,29 @@ function RecordForm({ initialRecord, onClose, onSave, onSaveDraft }) {
             />
           </section>
         </form>
+
+        {/* Image Preview Modal */}
+        {previewImage && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4" onClick={() => setPreviewImage(null)}>
+            <div className="relative max-w-4xl max-h-[90vh] bg-white dark:bg-slate-900 rounded-lg overflow-hidden">
+              <button 
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setPreviewImage(null);
+                }}
+                className="absolute top-2 right-2 p-1 rounded-full bg-black/50 text-white hover:bg-red-500 z-10"
+              >
+                <XCircle className="h-6 w-6" />
+              </button>
+              <img 
+                src={previewImage} 
+                alt="Preview" 
+                className="max-w-full max-h-[85vh] object-contain"
+                onClick={(e) => e.stopPropagation()}
+              />
+            </div>
+          </div>
+        )}
 
         <footer className="border-t px-4 py-2 flex items-center justify-between text-[11px] bg-white border-slate-200 dark:bg-slate-950 dark:border-slate-800">
           <div className="text-[10px] text-slate-500">

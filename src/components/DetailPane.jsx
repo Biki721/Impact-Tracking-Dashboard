@@ -1,5 +1,5 @@
-import React from 'react'
-import { FileImage, Link as LinkIcon, MessageCircle, Clipboard } from 'lucide-react'
+import React, { useState } from 'react'
+import { FileImage, Link as LinkIcon, MessageCircle, Clipboard, XCircle } from 'lucide-react'
 
 function DetailPane({ record, onEdit, onCopyBullet, onExportPDF }) {
   if (!record) {
@@ -12,6 +12,8 @@ function DetailPane({ record, onEdit, onCopyBullet, onExportPDF }) {
     )
   }
 
+  const [previewImage, setPreviewImage] = useState(null)
+
   const techSummary = [
     ...(record.tech?.languages || []),
     ...(record.tech?.frameworks || []),
@@ -22,18 +24,42 @@ function DetailPane({ record, onEdit, onCopyBullet, onExportPDF }) {
 
   return (
     <section className="hidden md:flex md:flex-1 flex-col bg-slate-50 dark:bg-slate-950/40">
-      <header className="flex items-center justify-between px-4 py-2 border-b text-[11px] border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950">
-        <div>
-          <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-50">{record.projectName}</h2>
-          <p className="text-[10px] text-slate-500 dark:text-slate-400">
-            {record.category} • {record.status} • {record.startDate} → {record.endDate || '—'}
-          </p>
-          {techSummary && (
-            <p className="text-[10px] text-slate-500 mt-0.5">
-              Tech: {techSummary}
-            </p>
-          )}
-        </div>
+      <div className="flex flex-col h-full overflow-hidden">
+        {/* Image Preview Modal */}
+        {previewImage && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4" onClick={() => setPreviewImage(null)}>
+            <div className="relative max-w-4xl max-h-[90vh] bg-white dark:bg-slate-900 rounded-lg overflow-hidden">
+              <button 
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setPreviewImage(null);
+                }}
+                className="absolute top-2 right-2 p-1 rounded-full bg-black/50 text-white hover:bg-red-500 z-10"
+              >
+                <XCircle className="h-6 w-6" />
+              </button>
+              <img 
+                src={previewImage} 
+                alt="Preview" 
+                className="max-w-full max-h-[85vh] object-contain"
+                onClick={(e) => e.stopPropagation()}
+              />
+            </div>
+          </div>
+        )}
+
+        <header className="flex items-center justify-between px-4 py-2 border-b text-[11px] border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950">
+          <div>
+            <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-50">{record.projectName}</h2>
+            <div className="text-[10px] text-slate-500 dark:text-slate-400">
+              {record.category} • {record.status} • {record.startDate} → {record.endDate || '—'}
+              {techSummary && (
+                <p className="text-[10px] text-slate-500 mt-0.5">
+                  Tech: {techSummary}
+                </p>
+              )}
+            </div>
+          </div>
         <div className="flex items-center gap-1.5">
           <button
             type="button"
@@ -167,7 +193,8 @@ function DetailPane({ record, onEdit, onCopyBullet, onExportPDF }) {
                   return (
                     <div
                       key={idx}
-                      className="w-20 h-16 rounded-md border border-slate-200 bg-slate-100 overflow-hidden flex items-center justify-center dark:border-slate-700 dark:bg-slate-900"
+                      className="w-20 h-16 rounded-md border border-slate-200 bg-slate-100 overflow-hidden flex items-center justify-center dark:border-slate-700 dark:bg-slate-900 cursor-pointer hover:opacity-90 transition-opacity"
+                      onClick={() => setPreviewImage(item.url)}
                     >
                       <img
                         src={item.url}
@@ -190,9 +217,10 @@ function DetailPane({ record, onEdit, onCopyBullet, onExportPDF }) {
                         href={item.url}
                         target="_blank"
                         rel="noreferrer"
-                        className="ml-1 text-primary-300 hover:text-primary-200"
+                        download={item.mimeType === 'application/pdf' || item.label?.toLowerCase().endsWith('.pdf') ? item.label : undefined}
+                        className="ml-1 text-primary-600 hover:text-primary-800 dark:text-primary-300 dark:hover:text-primary-200"
                       >
-                        Open
+                        {item.mimeType === 'application/pdf' || item.label?.toLowerCase().endsWith('.pdf') ? 'Download' : 'Open'}
                       </a>
                     </div>
                   )

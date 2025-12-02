@@ -60,31 +60,30 @@ function DetailPane({ record, onEdit, onCopyBullet, onExportPDF }) {
               )}
             </div>
           </div>
-        <div className="flex items-center gap-1.5">
-          <button
-            type="button"
-            onClick={() => onCopyBullet(record)}
-            className="inline-flex items-center gap-1 rounded-md border px-2 py-1 text-[10px] bg-white text-slate-700 border-slate-300 hover:bg-slate-100 dark:bg-slate-900 dark:text-slate-200 dark:border-slate-700 dark:hover:bg-slate-800"
-          >
-            <Clipboard className="h-3 w-3" /> Copy bullet
-          </button>
-          <button
-            type="button"
-            onClick={() => onExportPDF(record)}
-            className="inline-flex items-center gap-1 rounded-md border px-2 py-1 text-[10px] bg-white text-slate-700 border-slate-300 hover:bg-slate-100 dark:bg-slate-900 dark:text-slate-200 dark:border-slate-700 dark:hover:bg-slate-800"
-          >
-            PDF
-          </button>
-          <button
-            type="button"
-            onClick={() => onEdit(record)}
-            className="inline-flex items-center gap-1 rounded-md bg-primary-600 px-2 py-1 text-[10px] font-medium text-slate-50 hover:bg-primary-700"
-          >
-            Edit
-          </button>
-        </div>
-      </header>
-
+          <div className="flex items-center gap-1.5">
+            <button
+              type="button"
+              onClick={() => onCopyBullet(record)}
+              className="inline-flex items-center gap-1 rounded-md border px-2 py-1 text-[10px] bg-white text-slate-700 border-slate-300 hover:bg-slate-100 dark:bg-slate-900 dark:text-slate-200 dark:border-slate-700 dark:hover:bg-slate-800"
+            >
+              <Clipboard className="h-3 w-3" /> Copy bullet
+            </button>
+            <button
+              type="button"
+              onClick={() => onExportPDF(record)}
+              className="inline-flex items-center gap-1 rounded-md border px-2 py-1 text-[10px] bg-white text-slate-700 border-slate-300 hover:bg-slate-100 dark:bg-slate-900 dark:text-slate-200 dark:border-slate-700 dark:hover:bg-slate-800"
+            >
+              PDF
+            </button>
+            <button
+              type="button"
+              onClick={() => onEdit(record)}
+              className="inline-flex items-center gap-1 rounded-md bg-primary-600 px-2 py-1 text-[10px] font-medium text-slate-50 hover:bg-primary-700"
+            >
+              Edit
+            </button>
+          </div>
+        </header>
       <div className="flex-1 overflow-y-auto px-4 py-3 text-[11px] space-y-4">
         <section>
           <h3 className="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Problem</h3>
